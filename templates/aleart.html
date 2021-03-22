@@ -1,0 +1,26 @@
+
+{% load static %}
+<link rel="stylesheet" href="{% static 'boshen.css' %}">
+<div class="toptitle">
+    <div class="toptitle-logo"><img src="{% static 'guanli.png' %}" alt=""></div>
+    <div class="toptitle-lefttext">管理中心</div>
+    <div class="toptitle-righttext">
+        <form action="/logoutac/" method="post" name="logoutac">
+            {% csrf_token %}
+            <input type="submit" value="退出登录">
+        </form>
+    </div>
+</div>
+<div class="toptitle-hold"> </div>
+{% if red %}
+<div class="title" style="color: rgb(245, 9, 9); margin-left: 20%; overflow: hidden;">出错了</div>
+{% else %}
+<div class="title" style="color: #0366d6; margin-left: 20%; overflow: hidden;">发送成功</div>
+{% endif %}
+<p style="margin-left: 23%;margin-top: 20px;">{{ Msg }}</p>
+<div class="bsform-button bsform-button_green" style="margin-left: 23%; margin-top: 20px;">
+    <input type="button" value="好的, 重试一下" onclick="javascript:window.history.back()">
+</div>
+
+
+

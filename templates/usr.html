@@ -1,0 +1,193 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'boshen.css' %}">
+
+<style>
+    .bsform-inputLine {
+        width: 100%;
+        margin: 20px 3px 20px
+    }
+    body{
+        background-color: rgb(246, 248, 250);
+    }
+</style>
+
+<div class="toptitle">
+    <div class="toptitle-logo"><img src="{% static 'guanli.png' %}" alt=""></div>
+    <div class="toptitle-lefttext">群控端</div>
+    <div class="toptitle-righttext">
+        <form action="/logout/" method="post" name="logoutName">
+            {% csrf_token %}
+            <input type="submit" value="退出登录">
+        </form>
+    </div>
+    <div class="toptitle-righttext">{{ usrName }}</div>
+</div>
+<div class="toptitle-hold"> </div>
+
+
+
+
+<h2 style="margin:30px auto 0px;width: fit-content;">在此向多台手机下达指令</h2>
+
+<div class="title" style="margin-left: 5%;">指令设置</div>
+<form action="/sendcmd/" method="POST" name="logoutName">
+    {% csrf_token %}
+    <div class="bsform">
+        <div class="bsform-title" style="width: 20%;margin-right: 4px;">
+            红包检测次数
+        </div>
+        <div class="bsform-title">
+            /
+        </div>
+        <div class="bsform-title" style="width: 20%; margin-left: 4px;">
+            福袋检测次数
+        </div>
+        <br>
+        <div class="bsform-inputLine" style="width: 20%;">
+            <input type="text" name="hongbaoTime" id="">
+        </div>
+        <div class="bsform-title">
+            /
+        </div>
+        <div class="bsform-inputLine" style="width: 20%;">
+            <input type="text" name="fudaiCiShu" id="">
+        </div>
+        <br>
+
+        <div class="bsform-title" >
+            参与直播间人数上限:
+        </div>
+        <div class="bsform-inputLine" style="width: 20%;">
+            <input type="text" name="canyvRenShuShangXian" id="">
+        </div>
+        <br>
+
+        <div class="bsform-title">
+            开放
+        </div>
+        <div class="bsform-inputLine" style="width: 20%;">
+            <input type="text" name="kaifangFuDai" id="">
+        </div>
+        <div class="bsform-title">
+            秒以内的福袋
+        </div>
+        <br>
+
+        <div class="bsform-title">
+            只抢福袋已经参与的人数除以发包数小于
+        </div>
+        <div class="bsform-inputLine" style="width: 20%;">
+            <input type="text" name="xiaoYvX" id="">
+        </div>
+        <div class="bsform-title">
+            ,发包数大于
+        </div>
+        <div class="bsform-inputLine" style="width: 20%;">
+            <input type="text" name="xiaoYvY" id="">
+        </div>
+        <div class="bsform-title" >
+            的包
+        </div>
+        <br>
+
+        <div class="bsform-title">
+            收益达到
+        </div>
+        <div class="bsform-inputLine" style="width: 20%;">
+            <input type="text" name="shouYi" id="">
+        </div>
+        <div class="bsform-title">
+            抖币停止运行
+        </div>
+        <br>
+
+        <div class="bsform-title">
+            连续抢
+        </div>
+        <div class="bsform-inputLine" style="width: 20%;">
+            <input type="text" name="lianXv" id="">
+        </div>
+        <div class="bsform-title">
+            个,未中停止脚本
+        </div>
+        <br>
+
+        <div style="margin: 20px; margin-left:0">
+            <div class="bsform-title" style="margin-right: 20px;">
+                抢红包模式
+            </div>
+            <label><input class="radio radio_oul" type="radio" name="qianghongbao" > 全抢模式</label>
+            <label><input class="radio radio_oul" type="radio" name="qianghongbao"> 只抢免费模式</label>
+            <br>
+        </div>
+        <div class="bsform-title">
+            连续中
+        </div>
+        <div class="bsform-inputLine" style="width: 20%;">
+            <input type="text" name="lianxvzhongxiuxi" id="">
+        </div>
+        <div class="bsform-title">
+            个, 休息
+        </div>
+        <div class="bsform-inputLine" style="width: 20%;">
+            <input type="text" name="lianxvzhongxiuximiao" id="">
+        </div>
+        <div class="bsform-title">
+            秒
+        </div>
+        <br>
+
+        <div class="bsform-title">
+            连续不中
+        </div>
+        <div class="bsform-inputLine" style="width: 20%;">
+            <input type="text" name="lianxvbuzhongxiuxi" id="">
+        </div>
+        <div class="bsform-title">
+            个, 休息
+        </div>
+        <div class="bsform-inputLine" style="width: 20%;">
+            <input type="text" name="lianxvbuzhongxiuximiao" id="">
+        </div>
+        <div class="bsform-title">
+            秒
+        </div>
+        <br>
+        <!-- <div class="bsform-button bsform-button_white">
+            <input type="submit" value="&nbsp;&nbsp;&nbsp;&nbsp;清空&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;">
+        </div> -->
+        <div style="margin: 20px; margin-left:0">
+            <div class="bsform-title" style="margin-right: 20px;">
+                速度模式
+            </div>
+            <label><input class="radio radio_oul" type="radio" name="sudomoshi" > 普通模式</label>
+            <label><input class="radio radio_oul" type="radio" name="sudomoshi"> 超级模式</label>
+            <br>
+        </div>
+        <div class="bsform-button bsform-button_green">
+            <input type="submit" value="发送给所有手机">
+        </div>
+    </div>
+    
+</form>
+
+<div class="title" style="margin-left: 5%;" >已连接的手机</div>
+
+<div class="bsform">
+    <div class="bsform-title">
+        状态:
+    </div>
+    <div class="bsform-description">
+        最多可连接 {{ maxPhomeNumber }} 台手机, 目前连接了 {{ curPhoneNumber }} 台手机
+    </div>
+    <div>
+        点击刷新
+    </div>
+    <div class="bsform-description">
+        收益情况.....
+    </div>
+</div>
+
+<div style="height: 90px;">
+
+</div>

@@ -1,0 +1,58 @@
+<p>这是一个用来测试的页面</p>
+
+<form action="/testpost/" method="post">
+    {% csrf_token %}
+    <input type="text" name="cmd">
+    <input type="submit" value="测试">
+</form>
+
+<a href="teststart/">启动</a>
+
+
+
+<script>
+
+    "ui";
+    ui.layout(
+        <vertical>
+            <button id="btn" text="测试按钮" />
+        </vertical>
+    );
+
+    var t = threads.start(function (){sleep(3000)})
+    t.join()
+
+    function 悬浮窗初始化() {
+        floaty.checkPermission();
+        floaty.requestPermission();
+        floatBox = floaty.window(
+            <frame gravity="center" bg="#66666666" >
+                <text id="currentTime">当前时间:</text>
+                <text id="currentBattery">当前电量:</text>
+                <text id="fuDai_allcount">福袋总开:</text>
+                <text id="fuDai_allgot">福袋总中:</text>
+                <text id="free_got">免费袋中:</text>
+                <text>以后会补上的关闭按钮</text>
+            </frame>
+        );
+
+    }
+
+    悬浮窗初始化();
+    var t = threads.start(function (){sleep(3000)})
+    t.join()
+
+    var date = new Date();
+    var time = util.format("时间: %d:%d:%d\n", date.getHours(), date.getMinutes(), date.getSeconds());
+    var battery = String(device.getBattery());
+    floatBox.currentTime.setText("当前时间: " + time);
+    floatBox.currentBattery.setText("当前电量: " + battery);
+    
+    var t = threads.start(function (){sleep(3000)})
+    t.join()
+
+</script>
+
+<script>
+    
+</script>

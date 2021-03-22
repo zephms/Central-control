@@ -1,0 +1,47 @@
+{% load static %}
+<script src="{% static 'modernizr.js' %}"></script>
+<link rel="stylesheet" href="{% static 'index.css' %}">
+<link rel="stylesheet" href="{% static 'boshen.css' %}">
+<style>
+	.mag {
+		margin: 30px;
+	}
+	.mag input {
+		width: 80px;
+	}
+</style>
+<section class="cd-intro">
+	<div class="cd-intro-content mask">
+		<h1 data-content="这 是 一 个 群 控 系 统"><span>这 是 一 个 群 控 系 统</span></h1>
+		<div class="action-wrapper">
+			<p>
+				<div class="bsform-button bsform-button_green mag"><input type="button" onclick="javascript:window.location.href='./login'" value="登录"></div>
+				<div class="bsform-button bsform-button_white mag"><input type="button" onclick="javascript:window.location.href='./register'" value="注册"></div>
+				<!-- <a href="./login" class="cd-btn main-action">登录</a>
+				<a href="./register" class="cd-btn">注册</a> -->
+			</p>
+		</div>
+	</div>
+</section>
+<script src="{% static 'jquery-2.1.4.js' %}"></script>
+<script>
+	jQuery(document).ready(function($){
+	//this is used for the video effect only
+	if( $('.cd-bg-video-wrapper').length > 0 ) {
+		var videoWrapper = $('.cd-bg-video-wrapper'),
+			mq = window.getComputedStyle(document.querySelector('.cd-bg-video-wrapper'), '::after').getPropertyValue('content').replace(/"/g, "").replace(/'/g, "");
+		if( mq == 'desktop' ) {
+			// we are not on a mobile device 
+			var	videoUrl = videoWrapper.data('video'),
+				video = $('<video loop><source src="'+videoUrl+'.mp4" type="video/mp4" /><source src="'+videoUrl+'.webm" type="video/webm" /></video>');
+			video.appendTo(videoWrapper);
+			video.get(0).play();
+		}
+	}
+});
+</script>
+</body>
+<!-- <a href="./login">登录</a>
+<a href="./register">注册</a>
+<br>
+<a href="./test">测试</a> -->

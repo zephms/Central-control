@@ -1,0 +1,35 @@
+<style>
+    /* body {
+        background-color: #f6f8fa;
+    } */
+</style>
+
+{% load static %}
+<link rel="stylesheet" href="{% static 'boshen.css' %}">
+<div class="toptitle">
+    <div class="toptitle-logo"><img src="{% static 'guanli.png' %}" alt=""></div>
+    <div class="toptitle-lefttext">一个群控系统</div>
+</div>
+<div class="toptitle-hold"> </div>
+
+
+<div class="bsCenterBox">
+    <div class="bsCenterBox-title">登录您的账户</div>
+</div>
+
+<form action="/verification/" method="post" name="verificationName">
+    {% csrf_token %}
+    <div class="bsCenterForm">
+        <div class="bsform-description" style="margin-top: 28px;">卡密 :</div><div class="bsform-inputLine"><input type="text" name="usrac"></div>
+        <div class="bsform-description" style="display: none;">密码 :</div>
+        <div class="bsform-inputLine" style="display: none;">
+            <input type="text" name="pwdac" style="display: none;" value="iXdjEobr88KpBfsb">
+        </div>
+        <div class="bsform-button bsform-button_green" style="margin-left: 20px;margin-bottom: 25px; margin-top: 0px;">
+            <input type="submit" value="登录" style="width: 249px;" />
+        </div>
+    </div>
+</form>
+
+<br><br><br><br><br><br><br><br><br><br><br><br>
+<h1>目前测试用管理员卡密: ad | 普通用户卡密: usr1 和 usr2</h1>
