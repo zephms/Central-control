@@ -26,6 +26,7 @@ urlpatterns = [
     path("logout/", views.logout, name="logoutName"),
     path("centre/", views.centre, name="centreName"),
     path("addusr/", views.addusr, name="addusrName"),
+    path("delusrS/<int:usr_id>/", views.delusrS, name="delusrSName"),
     path("usr/", views.usr, name="usrName"),
     path("sendcmd/", views.sendcmd, name="sendcmdName"),
 

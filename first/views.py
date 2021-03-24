@@ -4,6 +4,7 @@ from django.urls import reverse
 from django.http import HttpResponse, JsonResponse
 from django.contrib.auth import authenticate, login as oriLogin, logout as oriLogout
 from django.views.decorators.csrf import csrf_exempt
+from django.contrib.auth.models import User
 # Create your views here.
 import json
 from first.models import Auth
@@ -62,16 +63,43 @@ def addusr(request):
     if (request.user.username != "ad"):
         return HttpResponseRedirect(reverse('usrName'))
     if request.method == "POST":
-        n = request.POST.get("usrName", "err")
-        d = request.POST.get("discription", "")
-        c = request.POST.get("count", "0")
         try:
-            Auth(usrName=n, desc=d, count=c).save()
-            return HttpResponseRedirect(reverse("centreName"))
+            n = request.POST["usrName"]
+            d = request.POST['discription']
+            c = request.POST['count']
+            s = request.POST['qunkong']
         except:
-            content = {"Msg":"建议检查输入格式,包括卡密不可以有空白符,还不能和已有的卡密重复,设备台数得是阿拉伯数字", "red":True}
+            content = {"Msg":"建议检查输入格式,包括卡密不可以有空白符,设备台数得是阿拉伯数字", "red":True}
             return render(request, "aleart.html", content)
+        if s == "true":
+            s = True
+        else:
+            s = False
+        try:
+            Auth(usrName=n, desc=d, count=c, status=s).save()    
+        except:
+            content = {"Msg":"卡密不可以和之前的卡密重复嗷, 设备台数得是阿拉伯数字", "red":True}
+            return render(request, "aleart.html", content)
+        if s:
+            user = User.objects.create_user(n, 'lennon@thebeatles.com', 'iXdjEobr88KpBfsb')
+        return HttpResponseRedirect(reverse("centreName"))
     
+def delusrS(request, usr_id):
+    print(55555555)
+    print(usr_id)
+    if not request.user.is_authenticated:
+        return HttpResponseRedirect(reverse('loginName'))
+    if (request.user.username != "ad"):
+        return HttpResponseRedirect(reverse('usrName'))
+    if not usr_id:
+        return HttpResponseRedirect(reverse('centreName'))
+    
+    thisAuth = Auth.objects.filter(id=usr_id)[0]
+    if thisAuth.status:
+        User.objects.filter(username=thisAuth.usrName)[0].delete()
+    Auth.objects.filter(usrName=thisAuth.usrName)[0].delete()
+    return HttpResponseRedirect(reverse("centreName"))
+
 
 def usr(request):
     if not request.user.is_authenticated:

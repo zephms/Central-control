@@ -19,7 +19,7 @@
 <div class="toptitle-hold"> </div>
 
 
-<div class="title">群控用户管理</div>
+<div class="title">群控用户管理(开发中)</div>
 <div class="fileManager">
     <div class="fileManager-title">
         <div class="fileManager-title-textleft"></div>
@@ -34,12 +34,11 @@
         <div class="fileManager-item-fileName">
             {{ i.usrName }}
         </div>
-        {{ i.status }}
         <div class="fileManager-item-description">
             {{ i.desc }}
         </div>
         <div class="fileManager-item-rightbtn">
-            <img src="{% static 'delete.png' %}" alt="">
+            <a href="{% url 'delusrSName' i.id %}"><img src="{% static 'delete.png' %}" alt=""></a>
         </div>
         <div class="fileManager-item-rightbtn">
             <img src="{% static 'bianji.png' %}" alt="">
@@ -74,7 +73,7 @@
 
 
 <br>
-<div class="title">单独授权用户管理(开发中)</div>
+<div class="title">单独授权用户管理</div>
 <div class="fileManager">
     <div class="fileManager-title">
         <div class="fileManager-title-textleft"></div>
@@ -89,12 +88,11 @@
         <div class="fileManager-item-fileName">
             {{ i.usrName }}
         </div>
-        {{ i.status }}
         <div class="fileManager-item-description">
             {{ i.desc }}
         </div>
         <div class="fileManager-item-rightbtn">
-            <img src="{% static 'delete.png' %}" alt="">
+            <a href="{% url 'delusrSName' i.id %}"><img src="{% static 'delete.png' %}" alt=""></a>
         </div>
         <div class="fileManager-item-rightbtn">
             <img src="{% static 'bianji.png' %}" alt="">
@@ -104,27 +102,26 @@
         </div>
     </div>
     {% endfor %}
-    <form action="" method="post">
+    <form action="/addusr/" method="post">
         {% csrf_token %}
         <div class="fileManager-item">
             <div class="fileManager-item-icon">
-                <img src="{% static 'yonghu.png' %}" alt="">
+                <img src="{% static 'addusr.png' %}" alt="">
             </div>
             <div class="fileManager-item-fileName">
-                <input type="text" name="" id="">
+                <input type="text" name="usrName" placeholder="卡密..">
             </div>
             <div class="fileManager-item-description">
-                <input type="text" name="" id="">
+                <input type="text" name="discription" placeholder="备注..">
             </div>
             <div class="fileManager-item-rightbtn">
-                <img src="{% static 'delete.png' %}" alt="">
+                <input type="submit" value="添加">
             </div>
-            <div class="fileManager-item-rightbtn">
-                <img src="{% static 'bianji.png' %}" alt="">
-            </div>
+            <input type="text" name="qunkong" value="false" style="display: none;">
             <div class="fileManager-item-date">
-                可管理安卓设备 <input type="text" name="" id=""> 台
+                可管理安卓设备 <input type="text" name="count"> 台
             </div>
         </div>
     </form>
+    <div style="height: 170px;"></div>
 </div>
